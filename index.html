@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>Page Redirection</title>
-  <meta http-equiv="refresh" content="0;url=http://demo.xqxu.top/">
-  <link rel="canonical" href="http://demo.xqxu.top/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    
 </head>
 <body>
-  If your browser does not redirect you, <a href="http://demo.xqxu.top/">click here</a>.
+
+<script>
+    window.onload = function(){
+		const url = window.location.search;
+		var code = "";
+		//存在code
+		if (url.indexOf('?') !== -1) {
+			const queryString = url.substr(1);
+			const pairs = queryString.split('&');
+			const params = {};
+			// 解析地址栏的信息
+			for (let i = 0; i < pairs.length; i++) {
+				const pair = pairs[i].split('=');
+				const key = decodeURIComponent(pair[0]);
+				const value = decodeURIComponent(pair[1] || ''); 
+				if (params[key]) {
+					if (Array.isArray(params[key])) {
+						params[key].push(value);
+					} else {
+						params[key] = [params[key], value];
+					}
+				} else {
+					params[key] = value;
+				}
+			}
+			//当前获取到code
+			code = params["code"];
+		}
+		window.href.location = 'http://192.160.8.11:8080/App/getCode?code=' + code;
+	}
+</script>
+
 </body>
 </html>
