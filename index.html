@@ -1,64 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>首页</title>
-    
+  <meta charset="utf-8">
+  <title>Page Redirection</title>
+  <meta http-equiv="refresh" content="0;url=http://http://demo.xqxu.top/">
+  <link rel="canonical" href="http://http://demo.xqxu.top/">
 </head>
 <body>
-
-<script>
-    window.onload = function(){
-		const url = window.location.search;
-		var code = "";
-		//存在code
-		if (url.indexOf('?') !== -1) {
-			const queryString = url.substr(1);
-			const pairs = queryString.split('&');
-			const params = {};
-			// 解析地址栏的信息
-			for (let i = 0; i < pairs.length; i++) {
-				const pair = pairs[i].split('=');
-				const key = decodeURIComponent(pair[0]);
-				const value = decodeURIComponent(pair[1] || ''); 
-				if (params[key]) {
-					if (Array.isArray(params[key])) {
-						params[key].push(value);
-					} else {
-						params[key] = [params[key], value];
-					}
-				} else {
-					params[key] = value;
-				}
-			}
-			//当前获取到code
-			code = params["code"];
-		}
-		console.log("hasCode:" + code);
-		//发送ajax请求给bom-kit后端的接口传入code
-		
-		sendCode(code);
-		
-	}
-	
-	function sendCode(code){
-		
-		var url = "https://192.160.8.11:8080/App/getCode?code=" + code
-		console.log(url);
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', url, true);
-		xhr.onload = function () {};
-		xhr.onerror = function () {
-			console.error('Request failed.');
-		};
- 
-		// 发送请求
-		xhr.send();
-	}
-</script>
-
+  If your browser does not redirect you, <a href="http://http://demo.xqxu.top/">click here</a>.
 </body>
 </html>
